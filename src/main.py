@@ -1,5 +1,5 @@
 def main():
-    """程序主入口"""
+    """program main entry point"""
     print("Python Tools Project Frame")
 
 if __name__ == "__main__":
