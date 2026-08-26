@@ -4,13 +4,13 @@ Modular terminal‑based tool collection.
 This repository contains two command‑line tools, under active development.
 
 ## Planned Tools
-### 1. Bookkeeping Tool（收支记账工具）
+### 1. Bookkeeping Tool
 - Add income / expense records
 - Calculate total income and total expenditure
 - Save records to local text file
 - Read historical records from file
 
-### 2. Word‑Frequency Statistics Tool（词频统计工具）
+### 2. Word‑Frequency Statistics Tool
 - Read text file content
 - Count word occurrence frequency
 - Sort words by frequency
