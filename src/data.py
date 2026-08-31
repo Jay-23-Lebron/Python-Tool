@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 import json
+import os
 
 
 # Data model: represent one expense record
@@ -16,11 +17,16 @@ class Expense:
 
 
 def save_records(record_list,file_path="expense_data.json"):
-    """Save list of Expense objects into json file on disk"""
+    """
+    Persist list of Expense objects to local json file on disk
+    Args:
+        record_list: list of Expense instances
+        file_path: target json file path
+    """
     # Convert Expense objects into dictionaries, prepare for json storage
-    serializable_list=[]
+    serializable_list = []
     for record in record_list:
-        item_dict={
+        item_dict = {
             "amount": record.amount,
             "date_time": record.date_time.isoformat(),
             "record_type": record.record_type,
@@ -36,23 +42,27 @@ def save_records(record_list,file_path="expense_data.json"):
 
 
 def load_records(file_path="expense_data.json"):
-    """Load expense records from json file, return list of Expense objects"""
-    import os
-
+    """
+    Load expense data from json file and convert dictionary back to Expense objects.
+    Args:
+        file_path: json file path to read
+    Returns:
+        list[Expense]: empty list if file not found
+    """
     # Handle first‑run scenario: json file does not exist on disk
     if not os.path.exists(file_path):
         return []
 
     # Open file in read‑mode, read raw json content
     with open(file_path,"r",encoding="utf-8") as f:
-        raw_list=json.load(f)
+        raw_list = json.load(f)
 
-    expense_list=[]
+    expense_list = []
     # Convert each raw dictionary into real Expense object
     for item in raw_list:
         # Restore datetime object from json‑saved string
-        dt=datetime.fromisoformat(item["date_time"])
-        exp=Expense(
+        dt = datetime.fromisoformat(item["date_time"])
+        exp = Expense(
             amount=item["amount"],
             date_time=dt,
             record_type=item["record_type"],
@@ -61,5 +71,14 @@ def load_records(file_path="expense_data.json"):
             note=item["note"]
         )
         expense_list.append(exp)
-        # Return fully converted bill‑object list for upper‑level program logic
+
+    # Return fully converted bill‑object list for upper‑level program logic
     return expense_list
+
+
+if __name__ == "__main__":
+    test_time = datetime.now()
+    test_bill = Expense(100.5, test_time, "expense", "Shop", "Food", "Lunch")
+    save_records([test_bill])
+    data = load_records()
+    print(data)

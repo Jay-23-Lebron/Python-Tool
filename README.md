@@ -24,3 +24,7 @@ src/
 
 ## Development Status
 > Status: Project skeleton completed, features under development.
+## Update Log
+- Refactor `data.py` code format
+- Add self‑test block for JSON save & load validation
+- Complete basic file persistence for expense records
