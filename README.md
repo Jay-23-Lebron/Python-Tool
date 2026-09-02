@@ -23,8 +23,18 @@ src/
 └─ learning_demo.py # Practice script: string, dict, file IO exercises
 
 ## Development Status
-> Status: Project skeleton completed, features under development.
+> Status: Data persistence module finished with error handling, business logic in progress.
+
+## How to Test Data Module
+Run the self‑test code of data.py to verify save & load function
+```bash
+python src/data.py
+```
+
 ## Update Log
 - Refactor `data.py` code format
 - Add self‑test block for JSON save & load validation
 - Complete basic file persistence for expense records
+- Add type hints for save_records and load_records
+- Add try-except exception handling for file IO
+- Improve docstring and code robustness
