@@ -38,3 +38,5 @@ python src/data.py
 - Add type hints for save_records and load_records
 - Add try-except exception handling for file IO
 - Improve docstring and code robustness
+- Implement menu option 1: add new expense / income record
+- Implement menu option 2: view all billing records, add .gitignore for local data exclusion

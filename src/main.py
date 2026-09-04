@@ -41,7 +41,23 @@ def main():
                 print("Amount must be a valid number!")
             
         elif choice == "2":
-            print("You choose to view all records.")
+            # Fetch latest bills
+            bill_list = logic.get_all_records()
+
+            if not bill_list:
+                print("No billing records found.")
+            else:
+                print("\n===== All Billing Records =====")
+                # Print each bill detail
+                for bill in bill_list:
+                    print(
+                        f"Time: {bill.date_time} | "
+                        f"Type: {bill.record_type} | "
+                        f"Amount: {bill.amount} | "
+                        f"Category: {bill.category} | "
+                        f"Payer: {bill.counter_party} | "
+                        f"Remark: {bill.note}"
+                    )
         elif choice == "3":
             print("You choose to calculate statistics.")
         elif choice == "4":

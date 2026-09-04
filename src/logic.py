@@ -1,5 +1,5 @@
-from src.data import Expense
 from datetime import datetime
+from src.data import Expense, load_records
 
 
 def create_bill(
@@ -30,3 +30,12 @@ def create_bill(
         note=remark
     )
     return new_expense
+
+
+def get_all_records():
+    """
+    Fetch all billing records from data layer
+    return: list of Expense objects
+    """
+    all_bills = load_records()
+    return all_bills
