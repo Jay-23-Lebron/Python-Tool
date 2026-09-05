@@ -39,3 +39,20 @@ def get_all_records():
     """
     all_bills = load_records()
     return all_bills
+
+
+def calculate_total() -> tuple[float, float, float]:
+    # Calculate total income, expense and net balance
+    records = get_all_records()
+    total_income = 0.0
+    total_expense = 0.0
+
+    # Accumulate amounts by record type
+    for record in records:
+        if record.record_type == "income":
+            total_income += record.amount
+        elif record.record_type == "expense":
+            total_expense += record.amount
+
+    balance = total_income - total_expense
+    return total_income, total_expense, balance

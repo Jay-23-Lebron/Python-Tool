@@ -59,6 +59,14 @@ def main():
                         f"Remark: {bill.note}"
                     )
         elif choice == "3":
+            # Get summary data from business logic layer
+            total_income, total_expense, balance = logic.calculate_total()
+
+            print("\n===== Income & Expense Summary =====")
+            print(f"Total Income: {total_income:.2f}")
+            print(f"Total Expense: {total_expense:.2f}")
+            print(f"Net Balance: {balance:.2f}")
+            
             print("You choose to calculate statistics.")
         elif choice == "4":
             print("You choose to filter records.")
