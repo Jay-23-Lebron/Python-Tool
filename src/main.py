@@ -58,6 +58,7 @@ def main():
                         f"Payer: {bill.counter_party} | "
                         f"Remark: {bill.note}"
                     )
+
         elif choice == "3":
             # Get summary data from business logic layer
             total_income, total_expense, balance = logic.calculate_total()
@@ -67,9 +68,31 @@ def main():
             print(f"Total Expense: {total_expense:.2f}")
             print(f"Net Balance: {balance:.2f}")
             
-            print("You choose to calculate statistics.")
         elif choice == "4":
-            print("You choose to filter records.")
+            print("\n==== Filter Records ====")
+            print("1. Filter only income records")
+            print("2. Filter only expense records")
+            filter_choice = input("Please enter your option: ")
+
+            # Call filter function based on user choice
+            if filter_choice == "1":
+                filtered_list = logic.filter_records_by_type("income")
+                type_label = "Income"
+            elif filter_choice == "2":
+                filtered_list = logic.filter_records_by_type("expense")
+                type_label = "Expense"
+            else:
+                print("Invalid option.")
+                continue
+
+            # Print filtered results
+            print(f"\n==== {type_label} Records ====")
+            if not filtered_list:
+                print("No records found for this type.")
+            else:
+                for idx, record in enumerate(filtered_list, 1):
+                    print(f"{idx}. Amount: {record.amount:.2f} | Type: {record.record_type} | note: {record.note} | Note: {record.note}") 
+            
         elif choice =="0":
             print("Program will exit. Goodbye!")
             # Stop the while loop

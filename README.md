@@ -23,7 +23,7 @@ src/
 └─ learning_demo.py # Practice script: string, dict, file IO exercises
 
 ## Development Status
-> Status: Data persistence module finished with error handling, business logic in progress.
+>Status: Data persistence module finished with error handling. Record adding, viewing, filtering and total calculation functions are implemented.
 
 ## How to Test Data Module
 Run the self‑test code of data.py to verify save & load function
@@ -41,3 +41,4 @@ python src/data.py
 - Implement menu option 1: add new expense / income record
 - Implement menu option 2: view all billing records, add .gitignore for local data exclusion
 - Implement menu option 3: calculate total income, expense and net balance
+- Implement menu option 4: filter records by income/expense type

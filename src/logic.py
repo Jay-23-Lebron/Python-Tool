@@ -56,3 +56,15 @@ def calculate_total() -> tuple[float, float, float]:
 
     balance = total_income - total_expense
     return total_income, total_expense, balance
+
+
+def filter_records_by_type(record_type: str) -> list[Expense]:
+    # Filter records by income/expense type
+    records = get_all_records()
+    result = []
+
+    for record in records:
+        if record.record_type == record_type:
+            result.append(record)
+
+    return result
