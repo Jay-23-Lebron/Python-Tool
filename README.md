@@ -23,7 +23,8 @@ src/
 └─ learning_demo.py # Practice script: string, dict, file IO exercises
 
 ## Development Status
->Status: Data persistence module finished with error handling. Record adding, viewing, filtering and total calculation functions are implemented.
+>Status: All core functions fully implemented and end-to-end verified. Record adding, viewing, filtering and total calculation all work correctly with complete input validation and exception handling.
+
 
 ## How to Test Data Module
 Run the self‑test code of data.py to verify save & load function
@@ -42,3 +43,7 @@ python src/data.py
 - Implement menu option 2: view all billing records, add .gitignore for local data exclusion
 - Implement menu option 3: calculate total income, expense and net balance
 - Implement menu option 4: filter records by income/expense type
+- Fix indentation logic bug in main.py: resolve the issue that subsequent input steps were skipped after amount validation loop
+- Complete full end-to-end test for all 4 menu functions
+- Verify input validation: non-numeric, zero and negative amount are properly intercepted and retried
+- Confirm JSON data persistence works correctly across program restarts

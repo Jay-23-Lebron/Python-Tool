@@ -21,24 +21,33 @@ def main():
         # Get user menu selection
         choice = input("Please enter your option number: ")
 
-        # Judge which function user selects
+        # Get valid amount with loop validation
         if choice == "1":
-            # Get every field from user input
-            try:
-                amount = float(input("Enter amount: "))
-                trans_type = input("Enter type (income / expense): ")
-                category = input("Enter category: ")
-                payer = input("Enter payer name: ")
-                remark = input("Enter remark: ")
-                current_time = datetime.now()
+        # Get valid amount with loop validation
+            while True:
+                try:
+                    amount = float(input("Enter amount: "))
+                    if amount <= 0:
+                        print("Error: Amount must be greater than 0.")
+                        continue
+                    break
+                except ValueError:
+                    print("Error: Amount must be a valid number.")
+                    continue
 
-                # Call logic function to create a new bill
-                new_bill = logic.create_bill(amount, current_time, trans_type, category, payer, remark)
-                record_list.append(new_bill)
-                data.save_records(record_list)
-                print("New bill added successfully!")
-            except ValueError:
-                print("Amount must be a valid number!")
+            # Get remaining fields from user input
+            trans_type = input("Enter type (income / expense): ")
+            category = input("Enter category: ")
+            payer = input("Enter payer name: ")
+            remark = input("Enter remark: ")
+            current_time = datetime.now()
+
+            # Call logic function to create a new bill
+            new_bill = logic.create_bill(amount, current_time, trans_type, category, payer, remark)
+            record_list.append(new_bill)
+            data.save_records(record_list)
+            print("New bill added successfully!")
+        
             
         elif choice == "2":
             # Fetch latest bills
@@ -46,6 +55,8 @@ def main():
 
             if not bill_list:
                 print("No billing records found.")
+                input("\nPress Enter to return to main menu...")
+                continue
             else:
                 print("\n===== All Billing Records =====")
                 # Print each bill detail
@@ -60,6 +71,13 @@ def main():
                     )
 
         elif choice == "3":
+            bill_list = logic.get_all_records()
+
+            if not bill_list:
+                print("No records found. Cannot calculate totals.")
+                input("\nPress Enter to return to main menu...")
+                continue
+
             # Get summary data from business logic layer
             total_income, total_expense, balance = logic.calculate_total()
 
@@ -69,6 +87,13 @@ def main():
             print(f"Net Balance: {balance:.2f}")
             
         elif choice == "4":
+            bill_list = logic.get_all_records()
+
+            if not bill_list:
+                print("No records found. Nothing to filter.")
+                input("\nPress Enter to return to main menu...")
+                continue
+
             print("\n==== Filter Records ====")
             print("1. Filter only income records")
             print("2. Filter only expense records")
